@@ -1,0 +1,67 @@
+{
+  "name": "i7eo-web-office-sdk",
+  "version": "2.0.6",
+  "packageManager": "pnpm@7.0.0",
+  "description": "🚀 The package offer web-office-sdk for mercurial!",
+  "type": "module",
+  "keywords": [
+    "monorepo",
+    "pnpm",
+    "turborepo",
+    "changesets",
+    "vite",
+    "vue",
+    "wps",
+    "web-office-sdk"
+  ],
+  "license": "MIT",
+  "author": "i7eo",
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.js"
+      },
+      "./*": [
+        "./*",
+        "./*.d.ts"
+      ]
+    },
+    "typesVersions": {
+      "*": {
+        "*": [
+          "./dist/*",
+          "./*"
+        ]
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "DEV=true pnpm build",
+    "test": "vitest",
+    "lint": "run-s \"lint:**\"",
+    "lint:eslint": "TIMING=1 eslint \"*.{js,jsx,ts,tsx,md,json,jsonc}\" --fix",
+    "lint:prettier": "prettier --write \"*.{js,ts,jsx,tsx,md,json,jsonc}\"",
+    "clean": "run-p \"clean:**\"",
+    "clean:cache": "rimraf .turbo && rimraf dist",
+    "clean:deps": "rimraf node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "tsup": "^8.0.2"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  }
+}
